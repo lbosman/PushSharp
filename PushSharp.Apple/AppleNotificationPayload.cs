@@ -81,6 +81,7 @@ namespace PushSharp.Apple
 			if (!this.Alert.IsEmpty)
 			{
                 if (!string.IsNullOrEmpty(this.Alert.Body)
+					&& string.IsNullOrEmpty(this.Alert.Title)
 					&& string.IsNullOrEmpty(this.Alert.LocalizedKey)
 					&& string.IsNullOrEmpty(this.Alert.ActionLocalizedKey)
 					&& (this.Alert.LocalizedArgs == null || this.Alert.LocalizedArgs.Count <= 0)
@@ -99,6 +100,9 @@ namespace PushSharp.Apple
 					if (this.Alert.LocalizedArgs != null && this.Alert.LocalizedArgs.Count > 0)
 						jsonAlert["loc-args"] = new JArray(this.Alert.LocalizedArgs.ToArray());
 
+					if (!string.IsNullOrEmpty(this.Alert.Title))
+						jsonAlert["title"] = new JValue(this.Alert.Title);
+					
 					if (!string.IsNullOrEmpty(this.Alert.Body))
 						jsonAlert["body"] = new JValue(this.Alert.Body);
 

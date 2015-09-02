@@ -17,6 +17,7 @@ namespace PushSharp.Apple
 		public AppleNotificationAlert()
 		{
 			Body = null;
+			Title = null;
 			ActionLocalizedKey = null;
 			LocalizedKey = null;
 			LocalizedArgs = new List<object>();
@@ -27,6 +28,15 @@ namespace PushSharp.Apple
 		/// Body Text of the Notification's Alert
 		/// </summary>
 		public string Body
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Title Text of the Notification's Alert
+		/// </summary>
+		public string Title
 		{
 			get;
 			set;
@@ -82,6 +92,7 @@ namespace PushSharp.Apple
 			get
 			{
 				if (!string.IsNullOrEmpty(Body)
+					|| !string.IsNullOrEmpty(Title)
 					|| !string.IsNullOrEmpty(ActionLocalizedKey)
 					|| !string.IsNullOrEmpty(LocalizedKey)
 					|| (LocalizedArgs != null && LocalizedArgs.Count > 0)
